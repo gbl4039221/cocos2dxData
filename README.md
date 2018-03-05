@@ -1,0 +1,2 @@
+# cocos2dxData
+appliedData
