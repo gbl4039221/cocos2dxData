@@ -1,0 +1,5 @@
+动作基本上和2.2没有多大区别位置坐标代码改变：  原：ccp(100,100)  改为 vec2(100,100)auto* move=MoveTo::create(1, Vec2(200,200));pi_sprite->runAction(move);回调函数：
+
+//无返回值FiniteTimeAction *pi_dl=DelayTime::create(3);CallFuncN * pi_funcall= CallFuncN::create(CC_CALLBACK_0(c606_GameScene1_chifan::mEatOver,this));FiniteTimeAction * pi_seq= Sequence::create(pi_dl,pi_funcall,NULL);this->runAction(pi_seq);
+
+//有返回值FiniteTimeAction *pi_dl=CCDelayTime::create(1);CallFuncN * pi_funcall= CCCallFuncN::create(CC_CALLBACK_0(c425_BreedScene1::mCreateFood,this,pi_bg));   //pi_bg 是传入的值FiniteTimeAction * pi_seq= CCSequence::create(pi_dl,pi_funcall,NULL);this->runAction(pi_seq);

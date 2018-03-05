@@ -1,0 +1,353 @@
+//原例 ..cocos2d-x-3.8/a61707/s515_nesgapinyin
+.h//命名空间#include "cocos-ext.h"
+USING_NS_CC;
+USING_NS_CC_EXT;//继承
+class Hello : public cocos2d::Layer,TableViewDataSource,TableViewDelegate
+｛
+
+//每一项的宽度和高度
+virtual cocos2d::Size cellSizeForTable(cocos2d::extension::TableView *table);
+// 当cell被点击时调用该方法 参数为当前的tableview对象与被点击的cell对象
+virtual void tableCellTouched(TableView* table, TableViewCell* cell);
+// 获取编号为idx的cell
+virtual TableViewCell* tableCellAtIndex(TableView *table, ssize_t idx);
+// 设置tableview中cell的个数
+virtual ssize_t numberOfCellsInTableView(TableView *table);
+// 当滑动tableview时触发该方法 参数为当前的tableview对象
+virtual void scrollViewDidScroll(ScrollView* view);
+// 当tableview被放大或缩小时触发该方法  参数为当前tableview对象
+virtual void scrollViewDidZoom(ScrollView* view);.cpp
+init()
+{ 
+    //创建
+    TableView* pTableView = TableView::create(this, Size(680, 285));
+    pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
+    pTableView->setAnchorPoint(Vec2(0,0));
+    pTableView->setPosition(Vec2(20,150));
+    pTableView->setDelegate(this);
+//   pTableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+    this->addChild(pTableView);
+    pTableView->setScale(1.5);
+    pTableView->reloadData();
+
+}
+
+void Hello::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
+{
+	int index=cell->getIdx();
+     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	switch (index)
+	{
+	case 0:
+            
+            CDataPageIndex::pageindex=0;
+		  cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            
+		break;
+	case 1:
+            
+            CDataPageIndex::pageindex=1;
+		cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+		break;
+	case 2:
+            
+            CDataPageIndex::pageindex=2;
+		cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+		break;
+	case 3:
+            
+            CDataPageIndex::pageindex=3;
+		cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+		break;
+	case 4:
+            
+            CDataPageIndex::pageindex=4;
+		cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 5:
+            
+            CDataPageIndex::pageindex=5;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 6:
+            
+            CDataPageIndex::pageindex=6;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 7:
+            
+            CDataPageIndex::pageindex=7;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 8:
+            
+            CDataPageIndex::pageindex=8;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 9:
+            
+            CDataPageIndex::pageindex=9;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 10:
+            
+            CDataPageIndex::pageindex=10;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 11:
+            
+            CDataPageIndex::pageindex=11;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 12:
+            
+            CDataPageIndex::pageindex=12;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 13:
+            
+            CDataPageIndex::pageindex=13;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 14:
+            
+            CDataPageIndex::pageindex=14;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 15:
+            
+            CDataPageIndex::pageindex=15;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 16:
+            
+            CDataPageIndex::pageindex=16;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 17:
+            
+            CDataPageIndex::pageindex=17;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 18:
+            
+            CDataPageIndex::pageindex=18;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 19:
+            
+            CDataPageIndex::pageindex=19;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 20:
+            
+            CDataPageIndex::pageindex=20;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 21:
+            
+            CDataPageIndex::pageindex=21;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 22:
+            
+            CDataPageIndex::pageindex=22;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+            break;
+        case 23:
+            
+            CDataPageIndex::pageindex=23;
+            cocos2d::Director::getInstance()->replaceScene(LearnScene::scene());
+		break;
+	default:
+		break;
+	}
+}
+CCSize Hello::cellSizeForTable(cocos2d::extension::TableView *table)
+{
+    return Size(300,280);
+}
+cocos2d::extension::TableViewCell* Hello::tableCellAtIndex(TableView *table, ssize_t idx)
+{
+    cocos2d::extension::TableViewCell *pCell = table->dequeueCell();
+    
+   if (!pCell) 
+	{
+		pCell = new cocos2d::extension::TableViewCell();
+        pCell->autorelease();				
+		switch (idx)
+		{
+		case 0:
+		pCell->addChild(setSprite("coverflow/1.png",0));
+		break;
+		case 1:
+		pCell->addChild(setSprite("coverflow/2.png",1));
+		break;
+		case 2:
+		pCell->addChild(setSprite("coverflow/3.png",2));
+		break;
+		case 3:
+		pCell->addChild(setSprite("coverflow/4.png",3));
+		break;
+		case 4:
+		pCell->addChild(setSprite("coverflow/5.png",4));
+		break;
+            case 5:
+                pCell->addChild(setSprite("coverflow/6.png",5));
+                break;
+            case 6:
+                pCell->addChild(setSprite("coverflow/7.png",6));
+                break;
+            case 7:
+                pCell->addChild(setSprite("coverflow/8.png",7));
+                break;
+            case 8:
+                pCell->addChild(setSprite("coverflow/9.png",8));
+                break;
+            case 9:
+                pCell->addChild(setSprite("coverflow/10.png",9));
+                break;
+            case 10:
+                pCell->addChild(setSprite("coverflow/11.png",10));
+                break;
+            case 11:
+                pCell->addChild(setSprite("coverflow/12.png",11));
+                break;
+            case 12:
+                pCell->addChild(setSprite("coverflow/13.png",12));
+                break;
+            case 13:
+                pCell->addChild(setSprite("coverflow/14.png",13));
+                break;
+            case 14:
+                pCell->addChild(setSprite("coverflow/15.png",14));
+                break;
+            case 15:
+                pCell->addChild(setSprite("coverflow/16.png",15));
+                break;
+            case 16:
+                pCell->addChild(setSprite("coverflow/17.png",16));
+                break;
+            case 17:
+                pCell->addChild(setSprite("coverflow/18.png",17));
+                break;
+            case 18:
+                pCell->addChild(setSprite("coverflow/19.png",18));
+                break;
+            case 19:
+                pCell->addChild(setSprite("coverflow/20.png",19));
+                break;
+            case 20:
+                pCell->addChild(setSprite("coverflow/21.png",20));
+                break;
+            case 21:
+                pCell->addChild(setSprite("coverflow/22.png",21));
+                break;
+            case 22:
+                pCell->addChild(setSprite("coverflow/23.png",22));
+                break;
+            case 23:
+                pCell->addChild(setSprite("coverflow/24.png",23));
+                break;
+           
+		default:
+		break;
+		}
+   }
+   else
+   {
+	   SpriteFrame *frame;
+	   switch (idx)
+	   {
+	   case 0:
+               frame=SpriteFrame::create("coverflow/1.png", Rect(0, 0, 278, 211));
+		   break;
+	   case 1:
+              frame=SpriteFrame::create("coverflow/2.png", Rect(0, 0, 278, 211));
+		   break;
+	   case 2:
+                frame=SpriteFrame::create("coverflow/3.png", Rect(0, 0, 278, 211));
+		   break;
+	   case 3:
+               frame=SpriteFrame::create("coverflow/4.png", Rect(0, 0, 278, 211));
+		   break;
+	   case 4:
+              frame=SpriteFrame::create("coverflow/5.png", Rect(0, 0, 278, 211));
+               break;
+           case 5:
+              frame=SpriteFrame::create("coverflow/6.png", Rect(0, 0, 278, 211));
+               break;
+           case 6:
+               frame=SpriteFrame::create("coverflow/7.png", Rect(0, 0, 278, 211));
+               break;
+           case 7:
+               frame=SpriteFrame::create("coverflow/8.png", Rect(0, 0, 278, 211));
+               break;
+           case 8:
+               frame=SpriteFrame::create("coverflow/9.png", Rect(0, 0, 278, 211));
+               break;
+           case 9:
+               frame=SpriteFrame::create("coverflow/10.png", Rect(0, 0, 278, 211));
+               break;
+           case 10:
+              frame=SpriteFrame::create("coverflow/11.png", Rect(0, 0, 278, 211));
+               break;
+           case 11:
+               frame=SpriteFrame::create("coverflow/12.png", Rect(0, 0, 278, 211));
+               break;
+           case 12:
+              frame=SpriteFrame::create("coverflow/13.png", Rect(0, 0, 278, 211));
+               break;
+           case 13:
+              frame=SpriteFrame::create("coverflow/14.png", Rect(0, 0, 278, 211));
+               break;
+           case 14:
+               frame=SpriteFrame::create("coverflow/15.png", Rect(0, 0, 278, 211));
+               break;
+           case 15:
+               frame=SpriteFrame::create("coverflow/16.png", Rect(0, 0, 278, 211));
+               break;
+           case 16:
+               frame=SpriteFrame::create("coverflow/17.png", Rect(0, 0, 278, 211));
+               break;
+           case 17:
+               frame=SpriteFrame::create("coverflow/18.png", Rect(0, 0, 278, 211));
+               break;
+           case 18:
+              frame=SpriteFrame::create("coverflow/19.png", Rect(0, 0, 278, 211));
+               break;
+           case 19:
+               frame=SpriteFrame::create("coverflow/20.png", Rect(0, 0, 278, 211));
+               break;
+           case 20:
+               frame=SpriteFrame::create("coverflow/21.png", Rect(0, 0, 278, 211));
+               break;
+           case 21:
+               frame=SpriteFrame::create("coverflow/22.png", Rect(0, 0, 278, 211));
+               break;
+           case 22:
+               frame=SpriteFrame::create("coverflow/23.png", Rect(0, 0, 278, 211));
+               break;
+           case 23:
+               frame=SpriteFrame::create("coverflow/24.png", Rect(0, 0, 278, 211));
+               break;
+
+	   default:
+		   break;
+	   }
+	   Sprite* pSprite = (Sprite*)pCell->getChildByTag(123);
+	   pSprite->setDisplayFrame(frame);
+   }
+  
+    return pCell;
+}
+ssize_t Hello::numberOfCellsInTableView(cocos2d::extension::TableView *table)
+{
+    return 24;
+}
+void Hello::scrollViewDidScroll(cocos2d::extension::ScrollView *view)
+{
+}
+void Hello::scrollViewDidZoom(cocos2d::extension::ScrollView *view)
+{
+}

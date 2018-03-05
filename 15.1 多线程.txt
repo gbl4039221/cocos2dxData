@@ -1,0 +1,61 @@
+//多线程
+mLondingPng();
+std::thread t1(&c458_AnimateScene0::mLoading,this);//创建一个分支线程，回调到myThread函数里
+t1.detach();
+
+
+
+
+
+.hpp
+void mLondingPng();
+void mLoading();
+
+.cpp
+void c458_AnimateScene0::mLondingPng()
+{
+    Director::getInstance()->getTextureCache()->addImage("c/select_bg.png"); //新
+    Director::getInstance()->getTextureCache()->addImage("c/bar.png"); //
+    Director::getInstance()->getTextureCache()->addImage("c/bar_back.png"); //
+}
+
+void c458_AnimateScene0::mLoading()
+{
+    // 添加进度条背景
+    auto bg = Sprite::create("c/select_bg.png");
+    bg->setPosition(1024,768);
+    bg->setScale(2);
+    addChild(bg,100);
+    // 进度条背景
+    auto barbg=Sprite::create("c/bar_back.png");
+    barbg->setPosition(1024,768);
+    barbg->setTag(2);
+    addChild(barbg,110);
+    
+    auto pi_Stripe = ProgressTimer::create(Sprite::create("c/bar.png"));//进度条
+    pi_Stripe->setType(ProgressTimer::Type::BAR);
+    //    Setup for a bar starting from the left since the midpoint is 0 for the x
+    //进度动画运动方向，可以多试几个值，看看效果
+    pi_Stripe->setMidpoint(Vec2(0,0));
+    pi_Stripe->setBarChangeRate(Vec2(1, 0));
+    pi_Stripe->setPosition(Vec2(1024, 768));
+    pi_Stripe->setPercentage(0);
+    pi_Stripe->setTag(1);
+    this->addChild(pi_Stripe,110);
+    
+    ProgressFromTo *to1 = ProgressFromTo::create(2, 0, 100);
+    ActionInterval * fadeout1 = FadeOut::create(1);
+    FiniteTimeAction * pi_seq= Sequence::create(to1,fadeout1,NULL);
+    pi_Stripe->runAction(pi_seq);
+    
+    FiniteTimeAction *pi_dl2=DelayTime::create(2);
+    ActionInterval * fadeout2 = FadeOut::create(1);
+    FiniteTimeAction * pi_seq2= Sequence::create(pi_dl2,fadeout2,NULL);
+    bg->runAction(pi_seq2);
+    
+    FiniteTimeAction *pi_dl3=DelayTime::create(2);
+    ActionInterval * fadeout3 = FadeOut::create(1);
+    FiniteTimeAction * pi_seq3= Sequence::create(pi_dl3,fadeout3,NULL);
+    barbg->runAction(pi_seq3);
+    
+}

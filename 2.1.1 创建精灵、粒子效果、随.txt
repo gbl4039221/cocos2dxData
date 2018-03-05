@@ -1,0 +1,45 @@
+//创建精灵
+auto * pi_bg=Sprite::create("bg.png");
+//设置位置
+pi_bg->setPosition(1024, 768);  //此处改变
+//加入场景
+this->addChild(pi_bg)	
+
+//随机创建精灵
+int i=arc4random()%7+1;
+Sprite * bacteria=Sprite::create(StringUtils::format("gameimg/worm%d.png",i));
+bacteria->setPosition(Vec2(100,100));
+bacteria->setTag(1100);
+this->addChild(bacteria);
+    
+ccp 换成 Vec2 
+
+其他属性未改变： Tag、图层、旋转
+ 
+
+//通过plist 创建
+ SpriteFrameCache::getInstance()->addSpriteFramesWithFile("studio/color_1_1_1/color_1_1_1.plist");
+    
+    auto button1=Sprite::createWithSpriteFrameName("color_1_1_1.png");
+    button1->setPosition(1024,768);
+    this->addChild(button1);
+
+//
+.h
+std::string pc_value[16];
+
+.cpp
+pc_value[0]={"studio/deer/deer.csb"};
+pc_value[1]={"studio/dog/dog.csb"};
+
+auto piStudio_cardFace = CSLoader::createNode(pc_value[pi_keyValue[i]].c_str());
+
+
+
+//粒子效果
+auto * parent1 = Node::create();
+ParticleSystemQuad *emitter = ParticleSystemQuad::create("s425_res/particle/xxlizi.plist");
+emitter->setPosition(1900, 1260);
+parent1->addChild(emitter,11);
+emitter->setScale(5);
+this->addChild(parent1,11);

@@ -1,0 +1,6 @@
+数据//存储并获取数据,单个数据的存储 ,name 是key  baibai 是要存储的值UserDefault::getInstance()->setStringForKey("name", "baibai");UserDefault::getInstance()->flush();//写了东西要提交    //获取std::string name = UserDefault::getInstance()->getStringForKey("name");CCLOG("name: %s ", name.c_str());UserDefault::getInstance()->setIntegerForKey("name", 100);
+UserDefault::getInstance()->flush();//写了东西要提交
+    
+//获取
+int pi_num=UserDefault::getInstance()->getIntegerForKey("name");
+CCLOG("pi_num: %d ", pi_num);

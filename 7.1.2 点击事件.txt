@@ -1,0 +1,86 @@
+.h
+USING_NS_CC;
+    Sprite * selSprite;                 //全局精灵
+    Vector<Node*>movableSprites;        //创建点击容器
+    
+    //重写触屏相关函数
+    virtual void onEnter();
+    virtual void onExit();
+    // 触碰事件回调函数
+    bool onTouchBegan(Touch* touch, Event* event);
+    void onTouchMoved(Touch* touch, Event* event);
+    void onTouchEnded(Touch* touch, Event* event);
+    
+    void selectSpriteForTouch(Vec2 touchLocation);
+    void panForTranslation(Vec2 translation);.cpp
+void c606_GameScene1_chifan::onEnter()
+{
+    //触摸响应注册
+    auto touchListener = EventListenerTouchOneByOne::create();//创建单点触摸事件监听器
+    touchListener->onTouchBegan = CC_CALLBACK_2(c606_GameScene1_chifan::onTouchBegan,this);//触摸开始
+    touchListener->onTouchMoved = CC_CALLBACK_2(c606_GameScene1_chifan::onTouchMoved,this);
+    touchListener->onTouchEnded = CC_CALLBACK_2(c606_GameScene1_chifan::onTouchEnded,this);
+    touchListener->setSwallowTouches(true);//是否向下传递    
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+    Layer::onEnter();
+}
+
+void c606_GameScene1_chifan::onExit()
+{
+    //移除所有监听
+   // _eventDispatcher->removeAllEventListeners();
+    Layer::onExit();
+}
+
+bool c606_GameScene1_chifan::onTouchBegan(Touch* touch, Event* event) {
+    //实现自己的逻辑代码
+    //获取当前的触摸点
+    Vec2 touchLocation= this->convertToNodeSpace(touch->getLocation());
+    for (int i=0; i<movableSprites.size(); i++)
+    {
+        Sprite* sprite=(Sprite*)movableSprites.at(i);
+        if (sprite->getBoundingBox().containsPoint(touchLocation))
+        {
+            this->selectSpriteForTouch(touchLocation);
+            
+            return true;
+        }
+    }
+    return false;
+}
+void c606_GameScene1_chifan::selectSpriteForTouch(cocos2d::Vec2 touchLocation)
+{
+    for (int i=0; i<movableSprites.size(); i++)
+    {
+        Sprite* sprite=(Sprite*)movableSprites.at(i);
+        if (sprite->getBoundingBox().containsPoint(touchLocation))
+        {
+            selSprite=sprite;
+        }
+    }
+}
+void c606_GameScene1_chifan::onTouchMoved(Touch* touch, Event* event)
+{
+    //实现自己的逻辑代码
+    Vec2 touchLocation=this->convertTouchToNodeSpace(touch);
+    Vec2 oldTouchLocation= touch->getPreviousLocationInView();
+    oldTouchLocation=Director::getInstance()->convertToGL(oldTouchLocation);
+    oldTouchLocation=this->convertToNodeSpace(oldTouchLocation);
+    Vec2 tranlation = touchLocation-oldTouchLocation;
+    this->panForTranslation(tranlation);
+    
+}
+void c606_GameScene1_chifan::panForTranslation(cocos2d::Vec2 translation)
+{
+    Vec2 newPos = selSprite->getPosition()+translation;
+    selSprite->setPosition(newPos);
+    
+}
+void c606_GameScene1_chifan::onTouchEnded(Touch* touch, Event* event)
+{
+    
+}
+
+
+

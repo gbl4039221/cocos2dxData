@@ -1,0 +1,12 @@
+
+    Sprite * pi_num1=(Sprite*)this->getChildByTag(1009);
+    Sprite * pi_num2=(Sprite*)this->getChildByTag(2009);
+    
+    Sprite * pi_hero=(CCSprite *)this->getChildByTag(100);  
+    Rect oldBoundingBox = pi_hero->boundingBox();
+    Rect newBoundingBox=Rect(oldBoundingBox.origin.x+242 , oldBoundingBox.origin.y+111,170 , 452);
+
+    if (pi_num1->getBoundingBox().intersectsRect(pi_num2->getBoundingBox()))
+    {
+
+    }

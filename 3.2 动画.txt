@@ -1,0 +1,116 @@
+.h 中定义
+cocos2d::Animate * createAnimate1();
+
+.cpp 中实现
+//方法1
+Animate * test01::createAnimate1(){    auto animation=Animation::create();    for (int i=1; i<6; i++)    {        animation->addSpriteFrameWithFile(StringUtils::format("explode%d.png",i));    }    animation->setDelayPerUnit(0.3f);    animation->setLoops(-1);    auto animate = Animate::create(animation);    return animate;}//方法二
+Animate * c483_GameScene1::createAnimateLine1(){
+    //内存空间
+    auto texture = Director::getInstance()->getTextureCache()->addImage(StringUtils::format("s483_studio/gamescene1/ball0%d_2.png",c483_guanka::pc_lineKind1));
+    //保存图片帧
+    Vector<cocos2d::SpriteFrame *> array;
+    for(int i=0;i<5;i++)
+    {
+        auto frame = SpriteFrame::createWithTexture(texture, Rect(132*i, 132*i, 132, 132));
+        array.pushBack(frame);
+    }
+    
+    auto animation = Animation::createWithSpriteFrames(array, 0.2f);   //此处createWithSpriteFrames()函数确实每帧间隔时间参数，需自行加上去！！！
+    animation->setLoops(-1);
+    auto animate = Animate::create(animation);    return animate;}//plist 播放动画
+SpriteFrameCache::getInstance()->addSpriteFramesWithFile("s425_res/main/cangying_img/cangyingfei.plist");
+
+Animate * c425_mainGame::createAnimateWorm8()
+{
+    auto animation=Animation::create();
+    for (int i=1; i<5; i++)
+    {
+        animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(StringUtils::format("cangyingfei%d.png",i)));
+        
+    }
+    animation->setDelayPerUnit(0.2f);
+    animation->setLoops(-1);
+    auto animate = Animate::create(animation);
+    return animate;
+}cocosstudio 骨骼动画
+ 
+引入
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+
+auto rootNode = CSLoader::createNode("pea/Skeleton.csb");
+//    rootNode->setPosition(500,500);
+addChild(rootNode);
+
+
+//Studio骨骼动画 实
+//    cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline("kitchen/wallet.csb");
+//    rootNode->runAction(action);
+//    action->gotoFrameAndPlay(0,false);
+action->setTimeSpeed(0.2);
+
+
+//预防光影重叠
+pSpine_boy->setToSetupPose();
+
+
+
+
+
+
+  //通过csb创建动画
+   cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline("Skeleton.csb");
+   rootNode->runAction(action);
+    //同一个文件创建的节点只能使用同一个文件创建的动画。
+    //从第0帧循环播放动画
+    action->gotoFrameAndPlay(5,true);
+
+
+
+
+
+
+
+
+//spine 2.0+版本 和3.0+版本  spine 骨骼动画代码
+
+#include <spine/spine-cocos2dx.h>
+#include "spine/spine.h"
+
+.h
+cocos2d::extension::CCSkeletonAnimation* qiaohu;
+
+
+auto qiaohu= new cocos2d::extension::CCSkeletonAnimation("spine/s1_sleep/skeleton.json", "spine/s1_sleep/skeleton.atlas");
+    qiaohu->setPosition(ccp(120, 245));
+    qiaohu->setScale(0.5);
+    this->addChild(qiaohu,2,2);
+    movableSprites->addObject(qiaohu);
+    qiaohu->addAnimation("s1_panda", true);
+
+
+骨骼动画暂停与恢复
+这个问题我已经解决了，虽然skeletonAnimaiton没有提供暂停的函数，但是根据继承关系，最终发现它继承自node，所以调用pause和resume函数就可以控制它暂停和恢复了 
+
+
+3.0+版本
+#include <spine/spine-cocos2dx.h>
+#include "spine/spine.h"
+
+.h
+spine::SkeletonAnimation* pSpine_boy;
+
+pSpine_boy= new spine::SkeletonAnimation("spine/s1_sleep/skeleton.json", "spine/s1_sleep/skeleton.atlas");
+    pSpine_boy->setPosition(120, 245);
+    pSpine_boy->setScale(0.5);
+    this->addChild(pSpine_boy,2,2);
+//    movableSprites->addObject(qiaohu);
+    pSpine_boy->addAnimation(1,"s1_panda",true);
+
+pSpine_boy->setSkin("girl_45");
+
+删除骨骼动画
+pSpine_boy->release();
+this->removeChild(pSpine_boy);
+SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+Director::getInstance()->getTextureCache()->removeUnusedTextures();

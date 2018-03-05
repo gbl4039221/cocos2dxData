@@ -1,0 +1,11 @@
+Mac OS X 显示文件详细路径，
+在“终端”输入：
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+回车
+killall Finder
+回车
+这样就在finder标题栏显示完整的位置信息了。
+关闭则把YES改成NO即可。
+
+
+终端中不支持空格    空格用\ 转译

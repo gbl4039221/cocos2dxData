@@ -1,0 +1,20 @@
+//异步判断
+DataTable *DataTable::mData_time(std::string pi_id,int pi_sku,int pi_page,int pi_dl)
+{
+    NSString *urlStr = [NSString stringWithFormat:@"http://192.168.31.201/test/w2_3.aspx?id=%s&sku=%d&page=%d&dl=%d", pi_id.c_str(), pi_sku,pi_page,pi_dl];
+    //向服务器请求服务
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+   
+    NSOperationQueue *que = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:que completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            NSLog(@"AsynchronousRequest1 get data is OK  on thread %@!!",[NSThread currentThread]);
+            //NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        }
+        else{
+            //chenggong
+            NSLog(@" statusCode is %d on thread %@",[(NSHTTPURLResponse*)response  statusCode],[NSThread currentThread]);
+        }
+    }];
+    return nullptr;
+}

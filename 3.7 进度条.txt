@@ -1,0 +1,28 @@
+.h
+ProgressTimer * pc_Stripe;//进度条
+
+.cpp
+//进度条 从左向右 每61秒加100子弹
+    pc_Stripe = ProgressTimer::create(Sprite::create("studio/s200_gamescene/ui2.png"));//进度条
+    pc_Stripe->setType(ProgressTimer::Type::BAR);
+    //    Setup for a bar starting from the left since the midpoint is 0 for the x
+    //进度动画运动方向，可以多试几个值，看看效果
+    pc_Stripe->setMidpoint(Vec2(0,0));
+    pc_Stripe->setBarChangeRate(Vec2(1, 0));
+    pc_Stripe->setPosition(Vec2(1516, 53));
+    pc_Stripe->setPercentage(0);
+    this->addChild(pc_Stripe,10);
+    ProgressFromTo *to2 = ProgressFromTo::create(10, 0, 100);
+    pc_Stripe->runAction(to2);
+
+
+//另一种进度条
+    auto bar=ui::LoadingBar::create("c/bar.png");
+    bar->setTag(1);
+    barbg->addChild(bar,99);
+    bar->setAnchorPoint(Vec2(0,0.5));
+    bar->setPosition(Vec2(0, barbg->getContentSize().height/2));
+    bar->setDirection(cocos2d::ui::LoadingBar::Direction::LEFT);
+    bar->setPercent(50)
+
+auto lb=dynamic_cast<cocos2d::ui::LoadingBar*>(this->getChildByTag(1));

@@ -1,0 +1,4 @@
+ZipUtils::setPvrEncryptionKeyPart(0, 0x4930d825);
+ZipUtils::setPvrEncryptionKeyPart(1, 0x0448ba59);
+ZipUtils::setPvrEncryptionKeyPart(2, 0xf75db397);
+ZipUtils::setPvrEncryptionKeyPart(3, 0xc32c2888);

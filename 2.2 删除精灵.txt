@@ -1,0 +1,6 @@
+//删除精灵
+
+.h
+void mRemove(Sprite * pi_sprite);
+
+.cppvoid c425_BreedScene1::mRemove(Sprite * pi_sprite){    if (pi_sprite==NULL)    {        return;    }        Director::getInstance()->getTextureCache()->removeTexture(pi_sprite->getTexture());    pi_sprite->retain();    pi_sprite->release();    this->removeChild(pi_sprite);}

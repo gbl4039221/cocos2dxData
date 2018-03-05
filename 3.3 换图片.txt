@@ -1,0 +1,12 @@
+
+//换图片原代码可以用。SpriteFrame *frame=SpriteFrame::create(StringUtils::format("s410_GameScene2_blood/skeeter/skeeter_g_die_1.png"),Rect(0,0,136,112));
+pi_wenzi->setSpriteFrame(frame);
+
+
+从内存中换图片
+SpriteFrame *pi_Frame=SpriteFrameCache::SpriteFrameCache::getInstance()->getSpriteFrameByName("C6030001_01.png");
+
+
+//从 studio取节点
+auto pi_bone_1=(Node *)pi_vegetables->getChildByName("Bone_1");
+auto pi_vege=(Sprite *)pi_bone_1->getChildByTag(205);

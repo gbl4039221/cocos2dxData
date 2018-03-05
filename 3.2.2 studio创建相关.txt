@@ -1,0 +1,14 @@
+引入
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+
+auto rootNode = CSLoader::createNode("pea/Skeleton.csb");
+//    rootNode->setPosition(500,500);
+addChild(rootNode);
+
+
+//Studio骨骼动画 实
+//    cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline("kitchen/wallet.csb");
+//    rootNode->runAction(action);
+//    action->gotoFrameAndPlay(0,false);
+action->setTimeSpeed(0.2);

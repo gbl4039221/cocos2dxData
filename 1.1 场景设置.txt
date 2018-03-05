@@ -1,0 +1,7 @@
+尺寸设置：AppDelegate中设置 2处
+
+//设置场景大小
+director->getOpenGLView()->setDesignResolutionSize(2048,1536,ResolutionPolicy::EXACT_FIT);	
+
+
+

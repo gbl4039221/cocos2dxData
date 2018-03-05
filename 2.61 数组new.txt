@@ -1,0 +1,4 @@
+//.h下的数组实例化
+int pc_csbNum = 102;//csb的数量
+std::string * pc_slCsbAdd = new std::string[pc_csbNum];//csb 地址
+

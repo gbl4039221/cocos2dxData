@@ -1,0 +1,9 @@
+..3.8/s516/loadingScene.cpp
+.h
+CCSpriteFrameCache *loadSprites;
+CCTextureCache *cc;
+
+.CPP
+loadSprites->addSpriteFramesWithFile("images/tooth/pandalose.plist",
+cc->textureForKey("images/tooth/pandalose.png"));
+loadCallBack();

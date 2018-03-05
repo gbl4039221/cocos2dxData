@@ -1,0 +1,33 @@
+//通过plist 创建
+ SpriteFrameCache::getInstance()->addSpriteFramesWithFile("studio/color_1_1_1/color_1_1_1.plist");
+    
+auto button1=Sprite::createWithSpriteFrameName("color_1_1_1.png");
+button1->setPosition(1024,768);
+this->addChild(button1);    
+
+
+//取 Dictionary 数据
+ValueMap plist = FileUtils::getInstance()->getValueMapFromFile(guanka::guankaplist);
+ValueMap& dict = plist["dict"].asValueMap();          //取得界面属性
+std::string pi_add = dict["bgAdd"].asString();        // 取得背景csb地址
+int pi_x = dict["x"].asInt();
+int pi_y = dict["y"].asInt();
+
+
+//取 Array 数据
+ValueMap plist = FileUtils::getInstance()->getValueMapFromFile(guanka::guankaplist);
+ValueVector& spine = plist["spine"].asValueVector();
+    
+for (int i=0; i< spine.size(); i=i+4)
+{
+    std::string vec_0 = spine.at(i).asString();   //json
+    std::string vec_1 = spine.at(i+1).asString(); //atlas
+    std::string vec_2 = spine.at(i+2).asString(); //animate
+    std::string vec_3 = spine.at(i+3).asString(); //skin
+        
+    spine::SkeletonAnimation* pSpine_boy;
+    pSpine_boy= new spine::SkeletonAnimation(vec_0.c_str(), vec_1.c_str());
+    this->addChild(pSpine_boy);
+    pSpine_boy->addAnimation(1,vec_2.c_str(),false);
+    pSpine_boy->setSkin(vec_3.c_str());
+}            

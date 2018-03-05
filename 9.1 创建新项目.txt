@@ -1,0 +1,13 @@
+//创建新项目
+
+1.
+./setup.py
+
+//建新项目
+
+cocos new Test01 -p org.cocos2dx -l cpp -d codes
+
+// test01 新建项目的名称
+// -p org.cocos2dx: Andorid 下项目的包名
+// -l cpp: 新建项目使用的编程语言
+// -d codes: 保存项目目录

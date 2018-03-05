@@ -1,0 +1,12 @@
+空值判定
+int spSkeleton_setSkinByName (spSkeleton* self, const char* skinName) {
+	spSkin *skin;
+	if (!skinName) {
+		spSkeleton_setSkin(self, 0);
+		return 1;
+	}
+	skin = spSkeletonData_findSkin(self->data, skinName);
+	if (!skin) return 0;
+	spSkeleton_setSkin(self, skin);
+	return 1;
+}

@@ -1,0 +1,31 @@
+//
+依据换图片代码
+
+通过节点层层取得对应的TAG
+
+取得骨骼的代码：
+auto pi_bn1=(BoneNode *)pi_rootNode->getChildByName("Bone_1");
+auto pi_bn2=(BoneNode *)pi_bn1->getChildByName("Bone_2");
+auto pi_bn3=(BoneNode *)pi_bn1->getChildByName("Bone_3");
+
+
+
+//例
+auto rootNode = CSLoader::createNode("animation3.csb");
+rootNode->setPosition(400,200);
+rootNode->setTag(100);
+addChild(rootNode);
+    
+//Studio骨骼动画 实
+cocostudio::timeline::ActionTimeline *action = CSLoader::createTimeline("animation3.csb");
+rootNode->runAction(action);
+action->gotoFrameAndPlay(0,true);
+
+//先取得骨骼节点 1，然后取得 2，然后取得 精灵
+auto pi_bn1=(BoneNode *)pi_rootNode->getChildByName("Bone_1");
+auto pi_bn2=(BoneNode *)pi_bn1->getChildByName("Bone_2");
+//换图片
+int pi_num2=arc4random()%10;
+Sprite * pi_sp2=(Sprite *)pi_bn2->getChildByTag(20);
+SpriteFrame *frame2=SpriteFrame::create(StringUtils::format("cloth/armR1/cloth0%d_armR1.png",pi_num2),Rect(0,0,187,218));
+pi_sp2->setDisplayFrame(frame2);

@@ -1,0 +1,6 @@
+auto m_scorelabel = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 24);
+m_scorelabel->setAnchorPoint(Vec2(1, 0));
+m_scorelabel->setPosition(visibleSize.width - 10, 35);
+m_scorelabel->setTag(10);
+m_scorelabel->enableOutline(Color4B::BLACK, 1);//描边颜色
+addChild(m_scorelabel);

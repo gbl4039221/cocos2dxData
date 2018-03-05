@@ -1,0 +1,7 @@
+NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+
+头文件
+#import <AdSupport/AdSupport.h>
+
+frameworks
+AdSupport.framework

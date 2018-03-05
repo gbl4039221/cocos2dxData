@@ -1,0 +1,33 @@
+ZipUtils::setPvrEncryptionKeyPart(0, 0x4930d825);
+ZipUtils::setPvrEncryptionKeyPart(1, 0x0448ba59);
+ZipUtils::setPvrEncryptionKeyPart(2, 0xf75db397);
+ZipUtils::setPvrEncryptionKeyPart(3, 0xc32c2888);
+    
+    
+SpriteFrameCache::getInstance()->addSpriteFramesWithFile("gamescene/Cprop/c204/c204_03.plist");
+
+//精灵
+auto * pi_table=Sprite::createWithSpriteFrameName("c204004_01.png"); 
+
+//改变按钮图片
+auto* pi_anniu=(Sprite*)this->getChildByTag(2011);
+SpriteFrame *pi_Frame=SpriteFrameCache::SpriteFrameCache::getInstance()->getSpriteFrameByName("c206054_02.png");
+pi_anniu->setDisplayFrame(pi_Frame);
+
+//帧动画
+Animate* c122_GameScene1_1::Fengmi()
+{
+    auto animation=Animation::create();
+    for (int i=1;i<10;i++)
+    {
+        animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(StringUtils::format("c602013_0%d.png",i)));
+    }
+    for (int i=10;i<13;i++)
+    {
+        animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(StringUtils::format("c602013_%d.png",i)));
+    }
+    animation->setDelayPerUnit(0.2f);
+    animation->setLoops(1);
+    auto animate = Animate::create(animation);
+    return animate;
+}

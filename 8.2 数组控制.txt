@@ -1,0 +1,10 @@
+//加入数组
+movableSprites.pushBack(pi_bg);
+
+//移除
+movableSprites.eraseObject(selSprite);
+
+//移除所有数组			
+movableSprites.clear();
+
+

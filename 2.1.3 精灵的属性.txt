@@ -1,0 +1,2 @@
+//取得精灵的大小
+float i=pi_b->getContentSize().width;

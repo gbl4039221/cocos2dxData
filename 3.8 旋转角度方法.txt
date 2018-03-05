@@ -1,0 +1,20 @@
+void c238_GameScene8::mRoation(Vec2 pi_place)
+{
+    auto pi_people=(Sprite *)this->getChildByTag(1001);
+    Vec2 peoplePoint=pi_people->getPosition();
+    
+    auto pi_lineDown=(Sprite *)this->getChildByTag(201);
+    Vec2 lineDownPoint=pi_lineDown->getPosition();
+    
+    auto pi_lineUp=(Sprite *)this->getChildByTag(202);
+    Vec2 lineUpPoint=pi_lineUp->getPosition();
+    
+    float PI=3.14;
+    auto pi_roDown=atan2(( (lineDownPoint.y-peoplePoint.y)),(lineDownPoint.x-peoplePoint.x))*180.0/PI;
+    pi_lineDown->runAction(RotateTo::create(0.001f,90-pi_roDown));
+        
+    auto pi_roUp=atan2(( (lineUpPoint.y-peoplePoint.y)),(lineUpPoint.x-peoplePoint.x))*180.0/PI;
+    pi_lineUp->runAction(RotateTo::create(0.001f,90-pi_roUp));
+}
+
+//90度是偏移问题。图片是 横还是竖

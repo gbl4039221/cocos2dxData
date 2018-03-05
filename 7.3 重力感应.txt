@@ -1,0 +1,38 @@
+//原例 ..cocos2d-x-3.8/a61707/s515_nesgapinyin
+.h//重力感应回调函数
+void didAccelerate(Acceleration* acc, cocos2d::Event* event);
+virtual void onEnter();
+
+cpp
+init();
+auto pi_girl=Sprite::create("5.png");
+pi_girl->setPosition(480,320);
+pi_girl->setTag(12);
+this->addChild(pi_girl);
+
+void HelloWorld::onEnter()
+{
+    //开启重力感应
+    Device::setAccelerometerEnabled(true);
+    auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(HelloWorld::didAccelerate, this));
+    //在事件监听器中注册
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    Layer::onEnter();
+}
+
+//监听事件
+void HelloWorld::didAccelerate(Acceleration* acc, Event* event)
+{
+    //使精灵随重力感应移动
+    auto sprite = this->getChildByTag(12);      //通过标签获取精灵
+    
+    auto pos = sprite->getPosition();
+//    sprite->setRotation(90);
+    log("acc =  %f , %f",acc->x,acc->y);
+    pos.x += acc->x;
+    pos.y += acc->y;
+    //pos.y += acc->y * 10;     //调整精灵移动敏感度
+    
+    sprite->setPosition(pos);
+//    log("Vec2 (%f,%f)",pos.x,pos.y);
+}

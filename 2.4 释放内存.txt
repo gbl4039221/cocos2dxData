@@ -1,0 +1,26 @@
+//释放所有缓存  支持Node、Sprite、studio    不支持spine
+void c425_HelloWorldScnene::mJump()
+{
+    this->removeAllChildren();
+    Director::getInstance()->purgeCachedData();//释放 所有缓存数据
+
+    auto other =c425_ChooseWormScene::scene();
+    Director::getInstance()->replaceScene(other);
+}
+
+
+//释放单个精灵  不支持 Node 和 spine
+//pi_sprite 是变量
+Director::getInstance()->getTextureCache()->removeTexture(pi_sprite->getTexture());pi_sprite->retain();pi_sprite->release();this->removeChild(pi_sprite); 
+
+
+//清理内存和纹理 配合pSpine_boy->release();
+
+pSpine_boy->release();
+pSpine_boy1->release();
+    
+//删除spine
+this->removeChild(pSpine_boy);
+this->removeChild(pSpine_boy1);
+SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+Director::getInstance()->getTextureCache()->removeUnusedTextures();

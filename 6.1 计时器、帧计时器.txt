@@ -1,0 +1,11 @@
+//计时器（变化）需要传float型进去
+例子：
+.hvoid mMove(float dt);   //＊＊＊＊＊＊改变处＊＊＊＊＊＊＊
+.cppthis->schedule(schedule_selector(test01::mMove), 2);//代码 
+方法：void test01::mMove(float dt){    cclog(“a”);}//帧计时器.hvoid update(float dt);
+.cppthis->scheduleUpdate();void test01::update(float dt){    CCLOG("a");}
+
+//停止单独计时器
+this->unschedule(schedule_selector(test01::mMove));
+//停止全部计时器
+this->unscheduleAllCallbacks();

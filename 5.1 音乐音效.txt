@@ -1,0 +1,12 @@
+头文件引用#include "SimpleAudioEngine.h"//背景音乐 （原代码可用，但有警告）CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("bg4.mp3", true);//音效（原代码可用，但有警告）CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("win.mp3");
+
+//随机播放音乐音效
+int i=arc4random()%9+1;
+CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(__String::createWithFormat("s402_Music/effect/connectme/connect%d.mp3",i)->getCString());
+
+CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(pc_musicE[pc_cardNum].c_str());
+    
+
+CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();停止背景音乐
+// 停止全部音效
+CocosDenshion::SimpleAudioEngine::getInstance()->stopAllEffects();
